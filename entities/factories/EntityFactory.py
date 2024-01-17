@@ -11,11 +11,13 @@ class EntityFactory(metaclass=ABC):
         self.lookup_keys_list = lookup_keys_list
 
     def create(self, event_row):
+        entity = None
 
-        if self.strategy.should_create_new(self.register):
-            entity = self.constructor()
-
-        entity = self.strategy.create(event_row, self.register)
+        if self.strategy.should_create_new(self.register, event_row):
+            entity = self.constructor(event_row)
+        else:
+            entity = self.strategy.create(event_row, self.register)
         self.register.append(entity)
 
         return entity
+

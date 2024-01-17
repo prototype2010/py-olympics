@@ -12,6 +12,16 @@ def parse():
         headers = all_rows[0]
         values = all_rows[1:]
 
+
+        res = dict(zip(headers, values[0]))
+
+        def header_value_mapping(event_row):
+            event = {}
+
+
+
+        # values.
+
         print(headers)
 
 
