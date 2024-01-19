@@ -1,7 +1,7 @@
 from abc import *
 
 
-class Entity(metaclass=ABC):
+class Entity:
     @abstractmethod
     def save(self):
         raise 'Should be overriden in child class'

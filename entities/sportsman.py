@@ -1,6 +1,7 @@
-import Entity
+from entities import entity
 
-class Sportsman(Entity):
+
+class Sportsman(entity.Entity):
     def __init__(self, event_row):
         self.name = event_row['Name']
         self.sex = event_row['Sex']
