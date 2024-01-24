@@ -1,9 +1,8 @@
 
 
 class EntityFactory:
-    register = list()
-
     def __init__(self, constructor, lookup_callback=None):
+        self.register = list()
         self.constructor = constructor
         self.lookup_callback = lookup_callback
 
@@ -13,18 +12,18 @@ class EntityFactory:
 
         return next(self.lookup_callback(event, self.register), None)
 
-    def _create_new(self, event):
-        entity = self.constructor(event)
+    def _create_new(self, serialized_event, **kwargs):
+        entity = self.constructor(serialized_event, **kwargs)
+
         self.register.append(entity)
 
         return entity
 
-    def create(self, event):
-        print('call')
-        existing_entity = self._find_existing(event)
+    def create(self, serialized_event, **kwargs):
+        existing_entity = self._find_existing(serialized_event)
 
         if existing_entity:
             return existing_entity
         else:
-            return self._create_new(event)
+            return self._create_new(serialized_event, **kwargs)
 

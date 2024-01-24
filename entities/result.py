@@ -1,13 +1,15 @@
-from entity import *
+from entities import entity
 
 
-class Results(Entity):
-    def __init__(self, event_row, athlete, game, sport, event):
-        self.id = event_row['Medal']
+class Results(entity.Entity):
+    def __init__(self, serialized_event, athlete, game, sport, event, team):
+
+        self.medal = serialized_event.medal
         self.athlete = athlete
         self.game = game
         self.sport = sport
         self.event = event
+        self.team = team
 
     def save(self):
         return
