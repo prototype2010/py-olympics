@@ -1,11 +1,3 @@
-from enum import Enum
-
-
-class Medal(Enum):
-    Gold = 'Gold'
-    Silver = 'Silver'
-    Bronze = 'Bronze'
-
 
 class EventRowSerializer:
     def __init__(self, event_row):
@@ -23,14 +15,18 @@ class EventRowSerializer:
         self.city = event_row['City']
         self.sport = event_row['Sport']
         self.event = event_row['Event']
-        self.medal = self.get_medal(event_row['Medal'])
+        self.medal = self.get_medal_value(event_row['Medal'])
 
     @staticmethod
-    def get_medal(medal_value):
-        if medal_value in Medal._member_names_:
-            return medal_value
+    def get_medal_value(medal_value):
+        if medal_value == 'Gold':
+            return 1
+        elif medal_value == 'Silver':
+            return 2
+        elif medal_value == 'Bronze':
+            return 3
         else:
-            return None
+            return 0
 
     @staticmethod
     def parse_int(int_value):
