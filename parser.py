@@ -2,7 +2,7 @@ import csv
 from serializers.event_row_serializer import EventRowSerializer
 from entities.factories import sports_factory,results_factory,games_factory, events_factory, athletes_factory, teams_factory
 
-FILE_NAME = 'athlete_events.csv'
+FILE_NAME = 'athlete_events_medium.csv'
 
 
 def parse():
@@ -21,6 +21,8 @@ def parse():
             athlete = athletes_factory.athletes_factory.create(serialized_event,team=team)
             game = games_factory.games_factory.create(serialized_event)
             event = events_factory.events_factory.create(serialized_event)
+
+            print('parsing row ' + serialized_event.id.__str__())
 
             results_factory.results_factory.create(
                 serialized_event,

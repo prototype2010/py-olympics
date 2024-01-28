@@ -4,7 +4,7 @@ class EventRowSerializer:
         self.id = self.parse_int(event_row['ID'])
         self.name = event_row['Name']
         self.sex = event_row['Sex']
-        self.age = self.parse_int(event_row['Age'])
+        self.age = self.parse_int(event_row['Age'], 0)
         self.height = self.parse_int(event_row['Height'])
         self.weight = self.parse_int(event_row['Weight'])
         self.team = event_row['Team']
@@ -29,8 +29,8 @@ class EventRowSerializer:
             return 0
 
     @staticmethod
-    def parse_int(int_value):
+    def parse_int(int_value, fallback_value=None):
         try:
             return int(int_value)
         except ValueError:
-            return None
+            return fallback_value

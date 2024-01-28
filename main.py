@@ -10,4 +10,5 @@ if __name__ == '__main__':
 
     for result in results_factory.results_factory.register:
         result.save()
+        print('saving result ' + result._db_id.__str__())
 
